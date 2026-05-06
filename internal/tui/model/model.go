@@ -5,10 +5,10 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/charmbracelet/bubbles/list"
-	"github.com/charmbracelet/bubbles/spinner"
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
+	"charm.land/bubbles/v2/list"
+	"charm.land/bubbles/v2/spinner"
+	tea "charm.land/bubbletea/v2"
+	"charm.land/lipgloss/v2"
 
 	"github.com/KarolosLykos/hackertea/internal/config"
 	"github.com/KarolosLykos/hackertea/internal/constants"
@@ -122,7 +122,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch msg.String() {
 		case "ctrl+c", "q":
 			return m, tea.Quit
-		case tea.KeyEnter.String():
+		case "enter":
 			if v, ok := m.TabContent[m.activeTab].SelectedItem().(*item.Item); ok {
 				if err := utils.Open(v.URL, runtime.GOOS); err != nil {
 					return m, nil
@@ -163,7 +163,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, cmd
 }
 
-func (m model) View() string {
+func (m model) View() tea.View {
 	doc := strings.Builder{}
 	doc.Reset()
 
@@ -213,7 +213,9 @@ func (m model) View() string {
 		doc.WriteString(m.theme.Window.Render(m.TabContent[m.activeTab].View()))
 	}
 
-	return m.theme.Doc.Render(doc.String())
+	v := tea.NewView(m.theme.Doc.Render(doc.String()))
+	v.AltScreen = true
+	return v
 }
 
 func (m model) createTabContent(tabs int) []list.Model {

@@ -12,7 +12,7 @@ import (
 	"github.com/KarolosLykos/hackertea/internal/constants"
 	"github.com/KarolosLykos/hackertea/internal/hn"
 	"github.com/KarolosLykos/hackertea/internal/tui/model"
-	tea "github.com/charmbracelet/bubbletea"
+	tea "charm.land/bubbletea/v2"
 )
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	p := tea.NewProgram(m, tea.WithAltScreen())
+	p := tea.NewProgram(m)
 
 	if _, err = p.Run(); err != nil {
 		fmt.Println("Error running program: ", err)

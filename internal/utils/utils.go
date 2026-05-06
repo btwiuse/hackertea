@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"sync"
 
-	"github.com/charmbracelet/bubbles/list"
+	"charm.land/bubbles/v2/list"
 
 	"github.com/KarolosLykos/hackertea/internal/constants"
 	"github.com/KarolosLykos/hackertea/internal/hn"

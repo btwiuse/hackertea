@@ -1,7 +1,8 @@
 package style
 
 import (
-	"github.com/charmbracelet/lipgloss"
+	"charm.land/lipgloss/v2"
+	"charm.land/lipgloss/v2/compat"
 
 	"github.com/KarolosLykos/hackertea/internal/constants"
 )
@@ -13,9 +14,9 @@ func DocStyle() lipgloss.Style {
 }
 
 func WindowStyle(light, dark, border string) lipgloss.Style {
-	highlightColor := lipgloss.AdaptiveColor{
-		Light: light,
-		Dark:  dark,
+	highlightColor := compat.AdaptiveColor{
+		Light: lipgloss.Color(light),
+		Dark:  lipgloss.Color(dark),
 	}
 
 	borderStyle := lipgloss.NormalBorder()
@@ -36,9 +37,9 @@ func WindowStyle(light, dark, border string) lipgloss.Style {
 }
 
 func TabGapStyle(light, dark, border string) lipgloss.Style {
-	highlightColor := lipgloss.AdaptiveColor{
-		Light: light,
-		Dark:  dark,
+	highlightColor := compat.AdaptiveColor{
+		Light: lipgloss.Color(light),
+		Dark:  lipgloss.Color(dark),
 	}
 	tabGapBorder := tabGapBorderWithBottom("┴", border)
 
@@ -52,9 +53,9 @@ func TabGapStyle(light, dark, border string) lipgloss.Style {
 func TitleTabStyle(light, dark, border string) lipgloss.Style {
 	activeTabBorder := tabBorderWithBottom("├", "─", "┴", border)
 
-	highlightColor := lipgloss.AdaptiveColor{
-		Light: light,
-		Dark:  dark,
+	highlightColor := compat.AdaptiveColor{
+		Light: lipgloss.Color(light),
+		Dark:  lipgloss.Color(dark),
 	}
 
 	return lipgloss.NewStyle().
@@ -66,9 +67,9 @@ func TitleTabStyle(light, dark, border string) lipgloss.Style {
 
 func ActiveTabStyle(light, dark, border string) lipgloss.Style {
 	activeTabBorder := tabBorderWithBottom("┘", " ", "└", border)
-	highlightColor := lipgloss.AdaptiveColor{
-		Light: light,
-		Dark:  dark,
+	highlightColor := compat.AdaptiveColor{
+		Light: lipgloss.Color(light),
+		Dark:  lipgloss.Color(dark),
 	}
 
 	return lipgloss.NewStyle().
@@ -79,9 +80,9 @@ func ActiveTabStyle(light, dark, border string) lipgloss.Style {
 
 func InActiveTabStyle(light, dark, border string) lipgloss.Style {
 	inActiveTabBorder := tabBorderWithBottom("┴", "─", "┴", border)
-	highlightColor := lipgloss.AdaptiveColor{
-		Light: light,
-		Dark:  dark,
+	highlightColor := compat.AdaptiveColor{
+		Light: lipgloss.Color(light),
+		Dark:  lipgloss.Color(dark),
 	}
 
 	return lipgloss.NewStyle().
@@ -92,53 +93,53 @@ func InActiveTabStyle(light, dark, border string) lipgloss.Style {
 
 func ItemNormalTitleStyle(light, dark string) lipgloss.Style {
 	return lipgloss.NewStyle().
-		Foreground(lipgloss.AdaptiveColor{Light: light, Dark: dark}).
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color(light), Dark: lipgloss.Color(dark)}).
 		Padding(0, 0, 0, 2)
 }
 
 func ItemNormalDescStyle(light, dark string) lipgloss.Style {
 	return lipgloss.NewStyle().
-		Foreground(lipgloss.AdaptiveColor{Light: light, Dark: dark}).
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color(light), Dark: lipgloss.Color(dark)}).
 		Padding(0, 0, 0, 2)
 }
 
 func ItemSelectedTitleStyle(bLight, bDark, light, dark string) lipgloss.Style {
 	return lipgloss.NewStyle().
 		Border(lipgloss.NormalBorder(), false, false, false, true).
-		BorderForeground(lipgloss.AdaptiveColor{Light: bLight, Dark: bDark}).
-		Foreground(lipgloss.AdaptiveColor{Light: light, Dark: dark}).
+		BorderForeground(compat.AdaptiveColor{Light: lipgloss.Color(bLight), Dark: lipgloss.Color(bDark)}).
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color(light), Dark: lipgloss.Color(dark)}).
 		Padding(0, 0, 0, 1)
 }
 
 func ItemSelectedDescStyle(bLight, bDark, light, dark string) lipgloss.Style {
 	return lipgloss.NewStyle().
 		Border(lipgloss.NormalBorder(), false, false, false, true).
-		BorderForeground(lipgloss.AdaptiveColor{Light: bLight, Dark: bDark}).
-		Foreground(lipgloss.AdaptiveColor{Light: light, Dark: dark}).
+		BorderForeground(compat.AdaptiveColor{Light: lipgloss.Color(bLight), Dark: lipgloss.Color(bDark)}).
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color(light), Dark: lipgloss.Color(dark)}).
 		Padding(0, 0, 0, 1)
 }
 
 func ItemDimmedTitleStyle(light, dark string) lipgloss.Style {
 	return lipgloss.NewStyle().
-		Foreground(lipgloss.AdaptiveColor{Light: light, Dark: dark}).
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color(light), Dark: lipgloss.Color(dark)}).
 		Padding(0, 0, 0, 2)
 }
 
 func ItemDimmedDescStyle(light, dark string) lipgloss.Style {
 	return lipgloss.NewStyle().
-		Foreground(lipgloss.AdaptiveColor{Light: light, Dark: dark}).
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color(light), Dark: lipgloss.Color(dark)}).
 		Padding(0, 0, 0, 2)
 }
 
 func VisitedStyle(light, dark string) lipgloss.Style {
 	return lipgloss.NewStyle().
-		Foreground(lipgloss.AdaptiveColor{Light: light, Dark: dark})
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color(light), Dark: lipgloss.Color(dark)})
 }
 
 func FilterMatchedStyle(bLight, bDark, light, dark string) lipgloss.Style {
 	return lipgloss.NewStyle().
-		Background(lipgloss.AdaptiveColor{Light: bLight, Dark: bDark}).
-		Foreground(lipgloss.AdaptiveColor{Light: light, Dark: dark}).
+		Background(compat.AdaptiveColor{Light: lipgloss.Color(bLight), Dark: lipgloss.Color(bDark)}).
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color(light), Dark: lipgloss.Color(dark)}).
 		Underline(true)
 }
 
